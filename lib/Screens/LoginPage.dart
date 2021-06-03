@@ -267,29 +267,7 @@ class _MyHomePageState extends State<MyHomePage>
                           onPress: () {
                             if (_formkey.currentState.validate()) {
                               _formkey.currentState.save();
-                              /*try {
-                                final FirebaseUser user =
-                                    (await _auth.signInWithEmailAndPassword(
-                                  email: _email,
-                                  password: _pass,
-                                ))
-                                        .user;
-                                dynamic userinfo = _auth.currentUser;
-                                return _userfromfirebase(userinfo);
-                              } catch (e) {
-                                if (e.code == 'user-not-found') {
-                                  print("user not found");
-                                } else if (e.code == 'wrong-password') {
-                                  print("wrong password");
-                                } else {
-                                  print("check internet connection!");
-                                }
-                              }
-                            } else {
-                              setState(() {
-                                _autoValidate = true;
-                              });
-                            }*/
+                             
 
                               Navigator.push(
                                   context,
