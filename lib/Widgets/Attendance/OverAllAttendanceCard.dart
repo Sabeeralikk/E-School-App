@@ -1,27 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-class AttendanceCard extends StatefulWidget {
-  final String starttime;
-  final String endtime;
-  final String subject;
-  final String staff;
-  final bool attendance;
+class OverallAttendanceCard extends StatefulWidget {
+  final String date;
+  final String day;
+  final bool firsthalf;
+  final bool secondhalf;
 
-  const AttendanceCard(
-      {Key key,
-      this.starttime,
-      this.endtime,
-      this.subject,
-      this.staff,
-      this.attendance})
+  const OverallAttendanceCard(
+      {Key key, this.date, this.day, this.firsthalf, this.secondhalf})
       : super(key: key);
 
   @override
-  _AttendanceCardState createState() => _AttendanceCardState();
+  _OverallAttendanceCardState createState() => _OverallAttendanceCardState();
 }
 
-class _AttendanceCardState extends State<AttendanceCard>
+class _OverallAttendanceCardState extends State<OverallAttendanceCard>
     with SingleTickerProviderStateMixin {
   Animation animation, delayedAnimation;
   AnimationController animationController;
@@ -38,16 +31,14 @@ class _AttendanceCardState extends State<AttendanceCard>
 
     delayedAnimation = Tween(begin: 1.0, end: 0.0).animate(CurvedAnimation(
         parent: animationController,
-        curve: Interval(0.3, 0.7, curve: Curves.fastOutSlowIn)));
+        curve: Interval(0.2, 0.6, curve: Curves.fastOutSlowIn)));
   }
-
   @override
   void dispose() {
     // TODO: implement dispose
     animationController.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -85,7 +76,7 @@ class _AttendanceCardState extends State<AttendanceCard>
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        "${widget.starttime}",
+                        "${widget.date}",
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -96,7 +87,7 @@ class _AttendanceCardState extends State<AttendanceCard>
                         height: 10,
                       ),
                       Text(
-                        "${widget.endtime}",
+                        "${widget.day}",
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -109,7 +100,7 @@ class _AttendanceCardState extends State<AttendanceCard>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${widget.subject}",
+                        "Morning Half",
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -120,7 +111,7 @@ class _AttendanceCardState extends State<AttendanceCard>
                         height: 10,
                       ),
                       Text(
-                        "${widget.staff}",
+                        "Afternoon Half",
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -129,18 +120,42 @@ class _AttendanceCardState extends State<AttendanceCard>
                       ),
                     ],
                   ),
-                  SizedBox(
-                    width: 10,
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color:
+                          widget.firsthalf == true ? Colors.green : Colors.red,
+                    ),
+                    child: Center(
+                      child: widget.firsthalf == true
+                          ? Text(
+                              "P",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            )
+                          : Text(
+                              "A",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
+                    ),
                   ),
                   Container(
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color:
-                          widget.attendance == true ? Colors.green : Colors.red,
+                          widget.secondhalf == true ? Colors.green : Colors.red,
                     ),
                     child: Center(
-                      child: widget.attendance == true
+                      child: widget.secondhalf == true
                           ? Text(
                               "P",
                               style: TextStyle(
