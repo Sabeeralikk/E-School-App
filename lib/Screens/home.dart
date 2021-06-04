@@ -7,6 +7,8 @@ import 'package:school_management/Widgets/DashboardCards.dart';
 import 'package:school_management/Widgets/MainDrawer.dart';
 import 'package:school_management/Widgets/UserDetailCard.dart';
 
+import 'Attendance/Attendance.dart';
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -88,7 +90,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           transform: Matrix4.translationValues(
                               muchDelayedAnimation.value * width, 0, 0),
                           child: Bouncing(
-                            onPress: () {},
+                            onPress: () { Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        Attendance(),
+                                  ));},
                             child: DashboardCard(
                               name: "Attendance",
                               imgpath: "attendance.png",

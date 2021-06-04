@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:school_management/Screens/SpleashScreen.dart';
 
+import 'Screens/timetable.dart';
+
 void main() {
   runApp(MyApp());
 }
