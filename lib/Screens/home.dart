@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:school_management/Screens/timetable.dart';
 import 'package:school_management/Widgets/AppBar.dart';
 import 'package:school_management/Widgets/BouncingButton.dart';
 import 'package:school_management/Widgets/DashboardCards.dart';
@@ -8,6 +9,8 @@ import 'package:school_management/Widgets/MainDrawer.dart';
 import 'package:school_management/Widgets/UserDetailCard.dart';
 
 import 'Attendance/Attendance.dart';
+import 'Exam/Exam_Rseult.dart';
+import 'Leave_Apply/Leave_apply.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -99,6 +102,74 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             child: DashboardCard(
                               name: "Attendance",
                               imgpath: "attendance.png",
+                            ),
+                          ),
+                        ),
+                                                Transform(
+                          transform: Matrix4.translationValues(
+                              muchDelayedAnimation.value * width, 0, 0),
+                          child: Bouncing(
+                            onPress: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        ExamResult(),
+                                  ));
+                            },
+                            child: DashboardCard(
+                              name: "Exam",
+                              imgpath: "exam.png",
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+               Padding(
+                padding: const EdgeInsets.fromLTRB(30.0, 10, 30, 10),
+                child: Container(
+                  alignment: Alignment(1.0, 0),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10.0, right: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Transform(
+                          transform: Matrix4.translationValues(
+                              delayedAnimation.value * width, 0, 0),
+                          child: Bouncing(
+                            onPress: () {
+                               Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        Timetable(),
+                                  ));
+                            },
+                            child: DashboardCard(
+                              name: "TimeTable",
+                              imgpath: "calendar.png",
+                            ),
+                          ),
+                        ),
+                        Transform(
+                          transform: Matrix4.translationValues(
+                              delayedAnimation.value * width, 0, 0),
+                          child: Bouncing(
+                            onPress: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        LeaveApply(),
+                                  ));
+                            },
+                            child: DashboardCard(
+                              name: "Apply Leave",
+                              imgpath: "leave_apply.png",
                             ),
                           ),
                         ),
