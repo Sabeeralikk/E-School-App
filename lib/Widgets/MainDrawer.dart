@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:school_management/Screens/Attendance/Attendance.dart';
-import 'package:school_management/Screens/Exam/Exam_Rseult.dart';
+import 'package:school_management/Screens/Exam/src/pages/home.dart';
 import 'package:school_management/Screens/Leave_Apply/Leave_apply.dart';
 import 'package:school_management/Screens/home.dart';
 import 'package:school_management/Screens/timetable.dart';
@@ -46,7 +46,7 @@ class _MainDrawerState extends State<MainDrawer> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => ExamResult(),
+                builder: (BuildContext context) => Homenote(),
               ),
             );
           },

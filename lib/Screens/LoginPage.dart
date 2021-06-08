@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage>
                       children: <Widget>[
                         Container(
                           child: Text(
-                            'Hello',
+                            'Eschool\n',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 40.0,
@@ -101,22 +101,22 @@ class _MyHomePageState extends State<MyHomePage>
                             padding:
                                 const EdgeInsets.fromLTRB(30.0, 35.0, 0, 0),
                             child: Text(
-                              'There',
+                              'The Student Buddy',
                               style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 40.0,
+                                  color: Colors.amber[300],
+                                  fontSize: 20.0,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(135.0, 0.0, 0, 30),
+                          padding: const EdgeInsets.fromLTRB(200.0, 20.0, 0, 30),
                           child: Container(
                             child: Text(
                               '.',
                               style: TextStyle(
                                   color: Colors.green[400],
-                                  fontSize: 80.0,
+                                  fontSize: 40.0,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -278,7 +278,18 @@ class _MyHomePageState extends State<MyHomePage>
                             ;
                           },
                           child: MaterialButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              try {
+                                await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _pass);
+                                print(FirebaseAuth.instance.currentUser.email);
+                              } on FirebaseAuthException catch (e) {
+                                if (e.code == 'user-not-found') {
+                                  print('No user found for that email.');
+                                } else if (e.code == 'wrong-password') {
+                                  print('Wrong password provided for that user.');
+                                }
+                              }
+                            },
                             elevation: 0.0,
                             minWidth: MediaQuery.of(context).size.width,
                             color: Colors.green,

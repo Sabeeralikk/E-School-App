@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:school_management/Screens/Exam/src/pages/home.dart';
 import 'package:school_management/Screens/timetable.dart';
 import 'package:school_management/Widgets/AppBar.dart';
 import 'package:school_management/Widgets/BouncingButton.dart';
@@ -9,7 +11,6 @@ import 'package:school_management/Widgets/MainDrawer.dart';
 import 'package:school_management/Widgets/UserDetailCard.dart';
 
 import 'Attendance/Attendance.dart';
-import 'Exam/Exam_Rseult.dart';
 import 'Leave_Apply/Leave_apply.dart';
 
 class Home extends StatefulWidget {
@@ -79,7 +80,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ),
           body: ListView(
             children: [
-              UserDetailCard(),
+              UserDetailCard(FirebaseAuth.instance.currentUser.uid),
               Padding(
                 padding: const EdgeInsets.fromLTRB(30.0, 10, 30, 10),
                 child: Container(
@@ -114,7 +115,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   context,
                                   MaterialPageRoute(
                                     builder: (BuildContext context) =>
-                                        ExamResult(),
+                                        Homenote(),
                                   ));
                             },
                             child: DashboardCard(

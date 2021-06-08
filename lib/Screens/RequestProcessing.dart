@@ -18,13 +18,13 @@ class ProcessingRequest extends StatelessWidget {
                 children: [
                   TextSpan(
                     text:
-                        'YOUR USERNAME AND PASSWORD IS SENT TO YOUR MAIL PLEASE CHECK YOUR EMAIL!',
+                        'THE USER HAS BEEN REGISTERED SUCCESSFULLY.You can now login using your saved credentials!',
                     style: TextStyle(
                       color: Colors.black,
                     ),
                   ),
                   TextSpan(
-                    text: 'Click Here..',
+                    text: 'Click Here for Login page',
                     style: TextStyle(
                       color: Colors.blue,
                     ),

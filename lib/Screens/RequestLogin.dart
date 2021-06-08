@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fzregex/fzregex.dart';
 import 'package:fzregex/utils/pattern.dart';
 import 'package:school_management/Widgets/BouncingButton.dart';
+import 'package:school_management/services/UserModel.dart';
 
 import 'RequestProcessing.dart';
 
@@ -37,7 +39,7 @@ class _RequestLoginState extends State<RequestLogin>
         curve: Interval(0.5, 1.0, curve: Curves.easeInOut)));
   }
 
-  String email, phno, _class, name, rollno;
+  String email, phno, _class, name, rollno,password;
   GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -247,6 +249,24 @@ class _RequestLoginState extends State<RequestLogin>
                                           borderSide:
                                               BorderSide(color: Colors.green))),
                                 ),
+                                SizedBox(height: 20.0),
+                                TextFormField(
+                                  onSaved: (val) {
+                                    password = val;
+                                  },
+                                  obscureText: true,
+                                  decoration: InputDecoration(
+                                      labelText: 'Create Password',
+                                      contentPadding: EdgeInsets.all(5),
+                                      labelStyle: TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                          color: Colors.grey),
+                                      focusedBorder: UnderlineInputBorder(
+                                          borderSide:
+                                          BorderSide(color: Colors.green))),
+                                ),
                               ],
                             )),
                       ],
@@ -280,12 +300,25 @@ class _RequestLoginState extends State<RequestLogin>
                             ;
                           },
                           child: MaterialButton(
-                            onPressed: () {},
+                            onPressed: () async{
+        try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+        addUser(name, rollno, _class, email, phno, FirebaseAuth.instance.currentUser.uid);
+        } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+        } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+        }
+        } catch (e) {
+        print(e);
+        }
+        },
                             elevation: 0.0,
                             minWidth: MediaQuery.of(context).size.width,
                             color: Colors.green,
                             child: Text(
-                              "Request",
+                              "Register now",
                               style: TextStyle(color: Colors.white),
                             ),
                           ),

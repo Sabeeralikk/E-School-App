@@ -1,3 +1,4 @@
+  import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:school_management/Screens/Attendance/OverallAttendance.dart';
 import 'package:school_management/Screens/Attendance/TodayAttendance.dart';
@@ -35,7 +36,7 @@ class _AttendanceState extends State<Attendance>
               child: Column(
             //crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              UserDetailCard(),
+              UserDetailCard(FirebaseAuth.instance.currentUser.uid),
               DefaultTabController(
                 length: 2, // length of tabs
                 initialIndex: 0,
