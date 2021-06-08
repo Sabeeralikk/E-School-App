@@ -25,6 +25,11 @@ class _AttendanceCardState extends State<AttendanceCard>
     with SingleTickerProviderStateMixin {
   Animation animation, delayedAnimation;
   AnimationController animationController;
+ Icon fab = Icon(
+    Icons.add,
+  );
+
+  int fabIconNumber = 0;
 
   @override
   void initState() {
@@ -136,29 +141,42 @@ class _AttendanceCardState extends State<AttendanceCard>
                     padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color:
-                          widget.attendance == true ? Colors.green : Colors.red,
+                      // color:
+                      //     widget.attendance == true ? Colors.green : Colors.red,
                     ),
-                    child: Center(
-                      child: widget.attendance == true
-                          ? Text(
-                              "P",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                            )
-                          : Text(
-                              "A",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                            ),
-                    ),
-                  ),
+                    child: FloatingActionButton(child: fab,
+        onPressed: () => setState(() {
+          if (fabIconNumber == 0) {
+            fab = Icon(
+              Icons.check,
+            );
+            fabIconNumber = 1;
+            
+          } else {
+            fab = Icon(Icons.add);
+            fabIconNumber = 0;
+          }
+        }),
+                    // Center(
+                    //   child: widget.attendance == true
+                    //       ? Text(
+                    //           "P",
+                    //           style: TextStyle(
+                    //             color: Colors.white,
+                    //             fontWeight: FontWeight.bold,
+                    //             fontSize: 14,
+                    //           ),
+                    //         )
+                    //       : Text(
+                    //           "A",
+                    //           style: TextStyle(
+                    //             color: Colors.white,
+                    //             fontWeight: FontWeight.bold,
+                    //             fontSize: 14,
+                    //           ),
+                    //         ),
+                    // ),
+                  ),)
                 ],
               ),
             ),

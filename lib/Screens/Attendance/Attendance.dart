@@ -38,7 +38,7 @@ class _AttendanceState extends State<Attendance>
             children: <Widget>[
               UserDetailCard(FirebaseAuth.instance.currentUser.uid),
               DefaultTabController(
-                length: 2, // length of tabs
+                length: 1, // length of tabs
                 initialIndex: 0,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -54,7 +54,6 @@ class _AttendanceState extends State<Attendance>
                           indicatorColor: Colors.black,
                           tabs: [
                             Tab(text: 'Today'),
-                            Tab(text: 'Overall'),
                           ],
                         ),
                       ),
@@ -67,7 +66,7 @@ class _AttendanceState extends State<Attendance>
                       child: TabBarView(
                         children: <Widget>[
                           TodayAttendance(),
-                          OverallAttendance(),
+                         
                         ],
                       ),
                     ),
