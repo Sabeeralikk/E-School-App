@@ -1,4 +1,6 @@
 // import 'package:school_management/Screens/Exam//src/pages/view_note.dart';
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -82,35 +84,41 @@ class _PlacesVisitedState extends State<Homenote> {
                 ),
                 body: Column(
                   children: <Widget>[
-                    Text("Upcoming Exams:\n", textScaleFactor: 2),
-                    Text("${data['Exams']}", textScaleFactor: 1.5),
+                    Padding(
+                      padding: const EdgeInsets.only(top:20.0,),
+                      child: Text("Upcoming Exams:\n", textScaleFactor: 1.6,style: TextStyle(fontWeight: FontWeight.bold),),
+                    ),
+                    Text("${data['Exams']}", textScaleFactor: 1.3),
                     Text("\n"),
                     // Expanded(
                     //   child: new NoteListBuilder()
                     // ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Ink(
-                              decoration: const ShapeDecoration(
-                                color: Colors.lightBlue,
-                                shape: CircleBorder(),),
-                              child: IconButton(
-                                icon: Icon(Icons.add),
-                                iconSize: 25,
-                                color: Colors.white,
-                                tooltip: 'Add Notes',
-                                onPressed: (){
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            Homenote2(),
-                                      ));
-                                },
-                              )
-                          )
-                        ]
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Ink(
+                                decoration: const ShapeDecoration(
+                                  color: Colors.lightBlue,
+                                  shape: CircleBorder(),),
+                                child: IconButton(
+                                  icon: Icon(Icons.add),
+                                  iconSize: 25,
+                                  color: Colors.white,
+                                  tooltip: 'Add Notes',
+                                  onPressed: (){
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              Homenote2(),
+                                        ));
+                                  },
+                                )
+                            )
+                          ]
+                      ),
                     ),
                   ],
                 ),
