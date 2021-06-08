@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:school_management/Screens/Exam/src/pages/home.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: (RouteSettings settings) {
         switch (settings.name){
           case HOME:
-            return SlideFromRightRoute(page: Homenote());
+            return SlideFromRightRoute(page: Homenote(FirebaseAuth.instance.currentUser.uid));
           case ADD_NOTE:
             return SlideFromRightRoute(page: NoteForm());
           case EDIT_NOTE:

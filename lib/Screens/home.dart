@@ -115,7 +115,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   context,
                                   MaterialPageRoute(
                                     builder: (BuildContext context) =>
-                                        Homenote(),
+                                        Homenote(FirebaseAuth.instance.currentUser.uid),
                                   ));
                             },
                             child: DashboardCard(
