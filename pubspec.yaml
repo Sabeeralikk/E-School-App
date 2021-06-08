@@ -45,6 +45,7 @@ dependencies:
   randomizer: ^0.0.2
   flrx_validator: ^0.4.0+2
   cloud_firestore: ^0.14.4
+  fluttertoast: ^8.0.7
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:school_management/Screens/Attendance/Attendance.dart';
 import 'package:school_management/Screens/Exam/src/pages/home.dart';
@@ -46,7 +47,7 @@ class _MainDrawerState extends State<MainDrawer> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => Homenote(),
+                builder: (BuildContext context) => Homenote(FirebaseAuth.instance.currentUser.uid),
               ),
             );
           },

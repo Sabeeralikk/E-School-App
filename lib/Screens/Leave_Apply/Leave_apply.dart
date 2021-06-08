@@ -5,9 +5,10 @@ import 'package:flutter/services.dart';
 
 import 'package:school_management/Widgets/AppBar.dart';
 import 'package:school_management/Widgets/BouncingButton.dart';
-import 'package:school_management/Widgets/LeaveApply/LeaveHistoryCard.dart';
+// import 'package:school_management/Widgets/LeaveApply/LeaveHistoryCard.dart';
 import 'package:school_management/Widgets/LeaveApply/datepicker.dart';
 import 'package:school_management/Widgets/MainDrawer.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LeaveApply extends StatefulWidget {
   @override
@@ -345,7 +346,7 @@ class _LeaveApplyState extends State<LeaveApply>
                       transform: Matrix4.translationValues(
                           muchDelayedAnimation.value * width, 0, 0),
                       child: Text(
-                        "Apply Leave Date",
+                        "Mail id of class coordinator:",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15,
@@ -361,7 +362,7 @@ class _LeaveApplyState extends State<LeaveApply>
                         ),
                         child: Container(
                           // height: height * 0.06,
-                          height: height * 0.25,
+                          height: height * 0.05,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.black),
@@ -370,7 +371,7 @@ class _LeaveApplyState extends State<LeaveApply>
                           child: TextFormField(
                             //autofocus: true,
                             minLines: 1,
-                            maxLines: 10,
+                            maxLines: 1,
                             keyboardType: TextInputType.multiline,
                             decoration: InputDecoration(
                               suffixIcon: searchFieldController.text.isNotEmpty
@@ -421,7 +422,15 @@ class _LeaveApplyState extends State<LeaveApply>
                       transform: Matrix4.translationValues(
                           delayedAnimation.value * width, 0, 0),
                       child: Bouncing(
-                        onPress: () {},
+                        onPress: () {
+                          Fluttertoast.showToast(
+                            msg: "Applied for leave!",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                            fontSize: 16.0);},
                         child: Container(
                           //height: 20,
                           width: double.infinity,
@@ -445,73 +454,74 @@ class _LeaveApplyState extends State<LeaveApply>
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 7,
-                    ),
-                    Transform(
-                      transform: Matrix4.translationValues(
-                          muchDelayedAnimation.value * width, 0, 0),
-                      child: Divider(
-                        color: Colors.black,
-                        thickness: 0.9,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 8.0,
-                        bottom: 8.0,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Transform(
-                            transform: Matrix4.translationValues(
-                                muchDelayedAnimation.value * width, 0, 0),
-                            child: Text(
-                              "Leave History",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ),
-                          Transform(
-                            transform: Matrix4.translationValues(
-                                delayedAnimation.value * width, 0, 0),
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: InkWell(
-                                onTap: () async {},
-                                child: Text(
-                                  "See All",
-                                  style: TextStyle(
-                                    color: Colors.blue,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Transform(
-                      transform: Matrix4.translationValues(
-                          delayedAnimation.value * width, 0, 0),
-                      child: Bouncing(
-                        onPress: () {},
-                        child: LeaveHistoryCard(
-                          reason:
-                              "this is sample reason.this is sample reason.this is sample reason.this is sample reason.",
-                          enddate: "12.12.2020",
-                          startdate: "11.12.2020",
-                          status: "usual reason",
-                          adate: "05.12.2020",
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    Text("\n\n\n")
+                    // SizedBox(
+                    //   height: 7,
+                    // ),
+                    // Transform(
+                    //   transform: Matrix4.translationValues(
+                    //       muchDelayedAnimation.value * width, 0, 0),
+                    //   child: Divider(
+                    //     color: Colors.black,
+                    //     thickness: 0.9,
+                    //   ),
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(
+                    //     top: 8.0,
+                    //     bottom: 8.0,
+                    //   ),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //     children: [
+                    //       Transform(
+                    //         transform: Matrix4.translationValues(
+                    //             muchDelayedAnimation.value * width, 0, 0),
+                    //         child: Text(
+                    //           "Leave History",
+                    //           style: TextStyle(
+                    //             fontWeight: FontWeight.bold,
+                    //             fontSize: 15,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       Transform(
+                    //         transform: Matrix4.translationValues(
+                    //             delayedAnimation.value * width, 0, 0),
+                    //         child: Padding(
+                    //           padding: const EdgeInsets.all(4.0),
+                    //           child: InkWell(
+                    //             onTap: () async {},
+                    //             child: Text(
+                    //               "See All",
+                    //               style: TextStyle(
+                    //                 color: Colors.blue,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                    // Transform(
+                    //   transform: Matrix4.translationValues(
+                    //       delayedAnimation.value * width, 0, 0),
+                    //   child: Bouncing(
+                    //     onPress: () {},
+                    //     child: LeaveHistoryCard(
+                    //       reason:
+                    //           "this is sample reason.this is sample reason.this is sample reason.this is sample reason.",
+                    //       enddate: "12.12.2020",
+                    //       startdate: "11.12.2020",
+                    //       status: "usual reason",
+                    //       adate: "05.12.2020",
+                    //     ),
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: 10,
+                    // ),
                   ],
                 ),
               ),
